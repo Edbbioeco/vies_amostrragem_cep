@@ -68,7 +68,8 @@ ggplot() +
 
 ### Intersecção ----
 
-oc_sibbr_inter <- grade_cep |> sf::st_join(oc_sibbr_shp, join = st_intersects) |>
+oc_sibbr_inter <- grade_cep |>
+  sf::st_join(oc_sibbr_shp, join = st_intersects) |>
   dplyr::filter(!is.na(species) & species |> stringr::word(2) != "NA") |>
   tibble::as_tibble() |>
   dplyr::select(FID, species) |>
