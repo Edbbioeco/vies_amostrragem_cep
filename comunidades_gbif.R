@@ -16,7 +16,7 @@ library(writexl)
 
 ### Importando ----
 
-oc_gbif <- readxl::read_xlsx("ocorrencias_gbif.xlsx")
+oc_gbif <- readxl::read_xlsx("C:/Users/LENOVO/OneDrive/Documentos/projeto mestrado/biogeografia/ocorrencias_gbif.xlsx")
 
 ### Visualizanddo ----
 
