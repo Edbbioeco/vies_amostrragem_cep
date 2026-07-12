@@ -66,8 +66,9 @@ ggplot() +
 
 ### Intersecção ----
 
-oc_specieslink_inter <- grade_cep |> sf::st_join(oc_specieslink_shp,
-                                                 join = st_intersects) |>
+oc_specieslink_inter <- grade_cep |>
+  sf::st_join(oc_specieslink_shp,
+              join = st_intersects) |>
   dplyr::filter(!is.na(scientificname) & scientificname |>
                   stringr::word(2) != "NA") |>
   tibble::as_tibble() |>
