@@ -16,7 +16,7 @@ library(writexl)
 
 ### Importando ----
 
-oc_bib <- readxl::read_xlsx("anfibios_inventários.xlsx")
+oc_bib <- readxl::read_xlsx("C:/Users/LENOVO/OneDrive/Documentos/projeto mestrado/biogeografia/anfibios_inventários.xlsx")
 
 ### Visualizanddo ----
 
@@ -28,7 +28,7 @@ oc_bib |> dplyr::glimpse()
 
 ### Importando ----
 
-coord_bib <- readxl::read_xlsx("anfibios_inventários.xlsx",
+coord_bib <- readxl::read_xlsx("C:/Users/LENOVO/OneDrive/Documentos/projeto mestrado/biogeografia/anfibios_inventários.xlsx",
                                sheet = 2)
 
 ### Visualizanddo ----
