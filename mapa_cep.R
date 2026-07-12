@@ -62,7 +62,7 @@ ggplot() +
 ## Mapa principal ----
 
 mapa_princ <- ggplot() +
-  geom_sf(data = estados,
+  geom_sf(data = br,
           aes(color = "Brazil",
               fill = "Brazil"),
           linewidth = 1) +
@@ -73,7 +73,7 @@ mapa_princ <- ggplot() +
           aes(color = "Atlantic Forest",
               fill = "Atlantic Forest"),
           linewidth = 1) +
-  geom_sf(data = estados,
+  geom_sf(data = br,
           color = "black",
           fill = "transparent",
           linewidth = 1) +
@@ -110,7 +110,7 @@ mapa_princ
 ## Insert mmap ----
 
 mapa_insert <- ggplot() +
-  geom_sf(data = estados,
+  geom_sf(data = br,
           color = "black",
           fill = "gray",
           linewidth = 0.5) +
@@ -121,7 +121,7 @@ mapa_insert <- ggplot() +
           color = "darkgreen",
           fill = "transparent",
           linewidth = 0.5) +
-  geom_sf(data = estados,
+  geom_sf(data = br,
           color = "black",
           fill = "transparent",
           linewidth = 0.5) +
