@@ -81,6 +81,7 @@ ggplot() +
 ### Intersecção ----
 
 oc_gbif_inter <- grade_cep |>
+  dplyr::mutate(FID = 1:dplyr::n()) |>
   sf::st_join(oc_gbif_shp, join = st_intersects) |>
   dplyr::filter(!is.na(species)) |>
   tibble::as_tibble() |>
