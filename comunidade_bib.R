@@ -89,6 +89,7 @@ ggplot() +
 ### Intersecção ----
 
 oc_bib_inter <- grade_cep |>
+  dplyr::mutate(FID = 1:dplyr::n()) |>
   sf::st_join(oc_bib_shp, join = st_intersects) |>
   dplyr::filter(!is.na(Espécie)) |>
   tibble::as_tibble() |>
