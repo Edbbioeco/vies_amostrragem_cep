@@ -90,7 +90,7 @@ registros$species |> unique()
 
 ### Corrigindo a taxonomia ----
 
-registros <- registros |>
+registros_trat <- registros |>
   dplyr::mutate(species = dplyr::case_when(species == "Rhinella margaritifera" ~ "Rhinella hoogmoedi",
                                            species %in% c("Rhinella jimi", "Rhinella marina", "Rhinella schneideri") ~ "Rhinella diptycha",
                                            species %in% c("Dendropsophus werneri", "Dendropsophus rubicundulus") ~ "Dendropsophus branneri",
@@ -127,13 +127,13 @@ registros <- registros |>
   )) |>
   dplyr::filter(!species %in% c("Breviceps gibbosus", "Vitreorana baliomma"))
 
-registros
+registros_trat
 
 ## Criando uma matriz de composição ----
 
 ### Matriz com todas as comunidades ----
 
-matriz <- registros |>
+matriz <- registros_trat |>
   dplyr::rename("Assemblage" = FID) |>
   dplyr::group_by(Assemblage, species) |>
   dplyr::summarise(presence = max(presence, na.rm = TRUE),
@@ -141,7 +141,7 @@ matriz <- registros |>
   tidyr::pivot_wider(names_from = species,
                      values_from = presence,
                      values_fill = 0) |>
-  dplyr::left_join(registros |>
+  dplyr::left_join(registros_trat |>
                      dplyr::rename("Assemblage" = FID) |>
                      dplyr::select(1, 4:6),
                    by = "Assemblage") |>
