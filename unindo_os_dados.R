@@ -10,6 +10,20 @@ library(writexl)
 
 # Dados ----
 
+## Registros de ocorrência ----
+
+### Importar ----
+
+registros <- purrr::map(list.files(pattern = "registros_"),
+                        readxl::read_xlsx) |>
+  dplyr::bind_rows()
+
+### Visualizar ----
+
+registros
+
+registros |> dplyr::glimpse()
+
 ## GBIF ----
 
 ### Importando ----
