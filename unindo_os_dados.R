@@ -24,54 +24,6 @@ registros
 
 registros |> dplyr::glimpse()
 
-## GBIF ----
-
-### Importando ----
-
-registros_gbif <- readxl::read_xlsx("registros_gbif.xlsx")
-
-### Visualizando ----
-
-registros_gbif |> dplyr::glimpse()
-
-registros_gbif
-
-## speciesLink ----
-
-### Importando ----
-
-registros_specieslink <- readxl::read_xlsx("registros_specieslink.xlsx")
-
-### Visualizando ----
-
-registros_specieslink |> dplyr::glimpse()
-
-registros_specieslink
-
-## Sibbr ----
-
-### Importando ----
-
-registros_sibbr <- readxl::read_xlsx("registros_sibbr.xlsx")
-
-### Visualizando ----
-
-registros_sibbr |> dplyr::glimpse()
-
-registros_sibbr
-
-## Bibliográficos ----
-
-### Importando ----
-
-registros_bib <- readxl::read_xlsx("registros_bib.xlsx")
-
-### Visualizando ----
-
-registros_bib |> dplyr::glimpse()
-
-registros_bib
-
 ## Grade ----
 
 ### Importando ----
