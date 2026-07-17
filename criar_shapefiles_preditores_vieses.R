@@ -34,3 +34,14 @@ uc
 ggplot() +
   geom_sf(data = uc, color = "darkgreen", fill = "forestgreen") +
   geom_sf(data = cep, color = "red", fill = "transparent")
+
+## Recortar para o CEP ----
+
+uc_rec <- uc |>
+  sf::st_intersection(cep)
+
+uc_rec
+
+ggplot() +
+  geom_sf(data = uc_rec, color = "darkgreen", fill = "forestgreen") +
+  geom_sf(data = cep, color = "red", fill = "transparent")
