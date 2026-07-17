@@ -6,7 +6,7 @@ library(geobr)
 
 library(tidyverse)
 
-library(osmdata)
+library(osmextract)
 
 # Shapefile do CEP ----
 
