@@ -65,11 +65,17 @@ universidades_estados <- purrr::map(estados_cep,
           place = .x,
           provider = "geofabrik",
           layer = "points",
-          extra_tags = c("amenity", "name"),
-          query = "SELECT * FROM points WHERE amenity = 'university'",
+          extra_tags = c("amenity", "office", "name"),
+          query = "SELECT * FROM points WHERE
+        amenity IN ('university', 'college') OR
+        office = 'educational_institution' OR
+        name LIKE '%Universidade Federal%' OR
+        name LIKE '%UFPE%' OR name LIKE '%UFRPE%' OR name LIKE '%UFAL%' OR
+        name LIKE '%UFPB%' OR name LIKE '%UFRN%' OR name LIKE '%UFC%'",
           force_download = FALSE,
-          quiet = TRUE)
+          quiet = TRUE
 
+          )
         ),
         .progress = TRUE) |>
   dplyr::bind_rows()
