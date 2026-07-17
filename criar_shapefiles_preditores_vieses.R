@@ -45,3 +45,7 @@ uc_rec
 ggplot() +
   geom_sf(data = uc_rec, color = "darkgreen", fill = "forestgreen") +
   geom_sf(data = cep, color = "red", fill = "transparent")
+
+## Exportar o shapefile ----
+
+uc_rec |> sf::st_write("unidade_conservacao_cep.shp")
