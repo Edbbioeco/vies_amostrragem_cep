@@ -75,6 +75,10 @@ ggplot() +
   geom_sf(data = areas_urb_cep, color = "black") +
   geom_sf(data = cep, color = "red", fill = "transparent")
 
+## Exportar o shapefile ----
+
+areas_urb_cep |> sf::st_write("areas_urb.shp")
+
 # Rodovias ----
 
 ## Importar rodovias ----
