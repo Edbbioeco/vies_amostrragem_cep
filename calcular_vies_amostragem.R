@@ -171,3 +171,7 @@ sts_vieses <- purrr::imap(
   dplyr::bind_rows()
 
 sts_vieses
+
+## Exportar as estatísticas ----
+
+sts_vieses |> writexl::write_xlsx("estatisticas_taxa_amostragem_sps.xlsx")
