@@ -85,7 +85,6 @@ vieses_sps <- purrr::map(sps,
                                                         terra::vect() |>
                                                         list(),
                                                       res = 0.1,
-                                                      buffer = 0,
                                                       terrestrial = TRUE)
 
                          ),
