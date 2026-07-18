@@ -89,7 +89,7 @@ vieses_sps <- purrr::map(
           sampbias::calculate_bias(gaz = uc |>
                                      terra::vect() |>
                                      list(),
-                                   res = 0.1,
+                                   res = 0.0898316,
                                    terrestrial = TRUE)
 
         },
