@@ -63,6 +63,18 @@ areas_urb
 ggplot() +
   geom_sf(data = areas_urb, color = "black")
 
+## Recortar para a área do CEP ----
+
+areas_urb_cep <- areas_urb |>
+  sf::st_intersection(cep)
+
+areas_urb_cep
+
+ggplot() +
+  geom_sf(data = uc_rec, color = "darkgreen", fill = "forestgreen") +
+  geom_sf(data = areas_urb_cep, color = "black") +
+  geom_sf(data = cep, color = "red", fill = "transparent")
+
 # Rodovias ----
 
 ## Importar rodovias ----
