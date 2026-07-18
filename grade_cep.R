@@ -35,3 +35,7 @@ grade_cep
 ggplot() +
   geom_sf(data = grade_cep, color = "black") +
   geom_sf(data = cep, color = "red", fill = "transparent")
+
+## Exportar ----
+
+grade_cep |> sf::st_write("grade_cep.shp", append = TRUE)
