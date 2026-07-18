@@ -80,6 +80,23 @@ ggplot() +
   geom_sf(data = cep, color = "black", fill = "transparent") +
   geom_sf(data = areas_urb, color = "red", fill = "transparent")
 
+## rodovias ----
+
+### Importar ----
+
+rodovias <- sf::st_read("rodovias.shp")
+
+### Visualizar ----
+
+areas_urb
+
+ggplot() +
+  geom_point(data = registros,
+             aes(Longitude, Latitude),
+             size = 1) +
+  geom_sf(data = cep, color = "black", fill = "transparent") +
+  geom_sf(data = rodovias, color = "red", fill = "transparent")
+
 # Calcular vies ----
 
 ## Lista das espécies com mais de 5 registros ----
