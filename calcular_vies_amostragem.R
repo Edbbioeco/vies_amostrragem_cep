@@ -140,3 +140,9 @@ vieses_sps <- purrr::map(
     ),
   .progress = TRUE) |>
   setNames(sps)
+
+## Visualizar ----
+
+vieses_sps
+
+vieses_sps |> dplyr::glimpse()
