@@ -120,9 +120,15 @@ vieses_sps <- purrr::map(
           dplyr::filter(species == sps) |>
           dplyr::rename("decimalLongitude" = Longitude,
                         "decimalLatitude" = Latitude) |>
-          sampbias::calculate_bias(gaz = uc |>
-                                     terra::vect() |>
-                                     list(),
+          sampbias::calculate_bias(gaz = list(uc |>
+                                                terra::vect(),
+                                              areas_urb |>
+                                                terra::vect(),
+                                              rodovias |>
+                                                terra::vect()) |>
+                                     setNames(c("Unidades de Conservação",
+                                                "Áreas Urbanas",
+                                                "Rodovias")),
                                    res = 0.0898316,
                                    terrestrial = TRUE)
 
