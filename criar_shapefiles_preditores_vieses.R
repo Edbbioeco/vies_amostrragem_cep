@@ -50,7 +50,7 @@ ggplot() +
 
 uc_rec |> sf::st_write("unidade_conservacao_cep.shp")
 
-## Rodovias ----
+# Rodovias ----
 
 ## Importar rodovias ----
 
@@ -68,3 +68,10 @@ rodovias <- purrr::map(list.files(path = "./rodovias",
                                   full.names = TRUE),
                        ~sf::st_read(.x)) |>
   dplyr::bind_rows()
+
+## Visualizar ----
+
+rodovias
+
+ggplot() +
+  geom_sf(data = rodovias)
