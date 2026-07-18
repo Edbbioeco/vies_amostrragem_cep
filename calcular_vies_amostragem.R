@@ -29,3 +29,19 @@ registros <- readxl::read_xlsx("registros.xlsx")
 registros
 
 registros |> dplyr::glimpse()
+
+## Unidades de conservação ----
+
+### Importar ----
+
+uc <- sf::st_read("unidade_conservacao_cep.shp")
+
+### Visualizar ----
+
+uc
+
+ggplot() +
+  geom_point(data = registros,
+             aes(Longitude, Latitude),
+             size = 1) +
+  geom_sf(data = uc, color = "red", fill = "transparent")
