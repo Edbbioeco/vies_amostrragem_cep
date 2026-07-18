@@ -75,3 +75,15 @@ rodovias
 
 ggplot() +
   geom_sf(data = rodovias)
+
+## Recortar para o CEP ----
+
+rodovias_cep <- rodovias |>
+  sf::st_intersection(cep)
+
+rodovias_cep
+
+ggplot() +
+  geom_sf(data = uc_rec, color = "darkgreen", fill = "forestgreen") +
+  geom_sf(data = rodovias_cep, color = "black") +
+  geom_sf(data = cep, color = "red", fill = "transparent")
