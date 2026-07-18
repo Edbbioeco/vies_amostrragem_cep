@@ -83,38 +83,47 @@ registros_trat <- registros |>
   dplyr::mutate(species = dplyr::case_when(species == "Rhinella margaritifera" ~ "Rhinella hoogmoedi",
                                            species %in% c("Rhinella jimi", "Rhinella marina", "Rhinella schneideri") ~ "Rhinella diptycha",
                                            species %in% c("Dendropsophus werneri", "Dendropsophus rubicundulus") ~ "Dendropsophus branneri",
-    species == "Dendropsophus leucophyllatus" ~ "Dendropsophus elegans",
+    species %in% c("Dendropsophus leucophyllatus",
+                   "Hyla leucophyllata") ~ "Dendropsophus elegans",
     species %in% c("Leptodactylus labyrinthicus", "Leptodactylus pentadactylus", "Leptodactylus pentadactylus labyrinthicus") ~ "Leptodactylus vastus",
     species == "Hypsiboas raniceps" ~ "Boana raniceps",
     species == "Phyllomedusa nordestina" ~ "Pithecopus gonzagai",
-    species == "Hypsiboas albomarginatus" ~ "Boana albomarginata",
+    species %in% c("Hypsiboas albomarginatus",
+                   "Hyla albomarginata") ~ "Boana albomarginata",
     species %in% c("Colostethus alagoanus", "Allobates alagoanus") ~ "Allobates olfersioides",
     species == "Hyla raniceps" ~ "Boana raniceps",
     species == "Hypsiboas semilineatus" ~ "Boana semilineata",
-    species == "Hypsiboas atlanticus" ~ "Boana atlantica",
+    species %in% c("Hypsiboas atlanticus",
+                   "Hyla punctata") ~ "Boana atlantica",
     species == "Hypsiboas exastis" ~ "Boana exastis",
     species %in% c("Hypsiboas freicanecae", "Boana freicanecaee") ~ "Boana freicanecae",
-    species == "Rana paradoxa" ~ "Lithobates palmipes",
+    species %in% c("Rana paradoxa", "Rana palmipes") ~ "Lithobates palmipes",
     species == "Leptodactylus ocellatus" ~ "Leptodactylus macrosternum",
     species %in% c("Bufo granulosus granulosus", "Rhinella mirandaribeiroi") ~ "Rhinella granulosa",
     species == "Ischnocnema ramagii" ~ "Pristimantis ramagii",
     species %in% c("Ololygon v-signata", "Scinax similis", "Osteopilus ocellatus") ~ "Scinax x-signatus",
     species %in% c("Phyllomedusa hypocondrialis", "Phyllomedusa hypochondrialis") ~ "Pithecopus gonzagai",
-    species %in% c("Hypsiboas crepitans", "Boana pardalis") ~ "Boana crepitans",
+    species %in% c("Hypsiboas crepitans",
+                   "Boana pardalis",
+                   "Hyla crepitans") ~ "Boana crepitans",
     species == "Chiasmocleis alagoanus" ~ "Chiasmocleis alagoana",
     species == "Scinax skuki" ~ "Ololygon skuki",
     species == "Hypsiboas faber" ~ "Boana faber",
     species == "Scinax muriciensis" ~ "Ololygon muriciensis",
     species == "Scinax agilis" ~ "Ololygon agilis",
     species == "Elachistocleis ovalis" ~ "Elachistocleis cesarii",
-    species == "Dendropsophus decioiens" ~ "Dendropsophus decipiens",
+    species %in% c("Dendropsophus decioiens",
+                   "Hyla decipiens decipiens",
+                   "Hyla decipiens branneri") ~ "Dendropsophus decipiens",
     species == "Leptodactylus marmoratus" ~ "Adenomera hylaedactyla",
     species == "Agalychnis granulosa" ~ "Hylomantis granulosa",
     species %in% c("Adelophrnne nordestina", "Adelophrynne nordestina") ~ "Adelophrynne nordestina",
     species == "Vitreorana balionma" ~ "Vitreorana baliomma",
     .default = species
   )) |>
-  dplyr::filter(!species %in% c("Breviceps gibbosus", "Vitreorana baliomma"))
+  dplyr::filter(!species %in% c("Breviceps gibbosus",
+                                "Vitreorana baliomma",
+                                "Hyla senicula senicula"))
 
 registros_trat
 
@@ -194,7 +203,7 @@ matriz_trat
 
 ## Registros ----
 
-registros |>
+registros_trat |>
   dplyr::rename("Assemblage" = FID) |>
   openxlsx::write.xlsx("registros.xlsx")
 
