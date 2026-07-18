@@ -16,3 +16,13 @@ cep
 
 ggplot() +
   geom_sf(data = cep, color = "black")
+
+# Grade do CEP ----
+
+## Criar a grade ----
+
+grade_cep <- cep |>
+  sf::st_make_grid(cellsize = 0.0898316) |>
+  sf::st_as_sf() |>
+  sf::st_join(cep) |>
+  tidyr::drop_na()
