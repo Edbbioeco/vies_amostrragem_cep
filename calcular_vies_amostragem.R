@@ -71,3 +71,22 @@ sps <- registros$species |>
   unique()
 
 sps
+
+## Calcular vieses para cada espécie ----
+
+vieses_sps <- purrr::map(sps,
+                         purrr::in_parallel(
+
+                           ~registros |>
+                             dplyr::filter(species == .x) |>
+                             dplyr::rename("decimalLongitude" = Longitude,
+                                           "decimalLatitude" = Latitude) |>
+                             sampbias::calculate_bias(gaz = uc |>
+                                                        terra::vect() |>
+                                                        list(),
+                                                      res = 0.1,
+                                                      buffer = 0,
+                                                      terrestrial = TRUE)
+
+                         ),
+                         .progress = TRUE)
