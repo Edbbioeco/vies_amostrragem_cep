@@ -153,3 +153,21 @@ vieses_sps_trat <- vieses_sps |>
   purrr::compact()
 
 vieses_sps_trat
+
+## Calcular estatísticas ----
+
+sts_vieses <- purrr::imap(
+  vieses_sps_trat,
+  purrr::in_parallel(
+
+    ~.x$bias_estimate |>
+      dplyr::summarise(dplyr::across(
+        .cols = dplyr::contains("w_"),
+        .fns = ~mean(.))) |>
+      dplyr::mutate(species = .y)
+
+  ),
+  .progress = TRUE) |>
+  dplyr::bind_rows()
+
+sts_vieses
