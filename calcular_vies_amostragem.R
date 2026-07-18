@@ -63,6 +63,23 @@ ggplot() +
   geom_sf(data = cep, color = "black", fill = "transparent") +
   geom_sf(data = uc, color = "red", fill = "transparent")
 
+## Áreas urbanas ----
+
+### Importar ----
+
+areas_urb <- sf::st_read("areas_urb.shp")
+
+### Visualizar ----
+
+areas_urb
+
+ggplot() +
+  geom_point(data = registros,
+             aes(Longitude, Latitude),
+             size = 1) +
+  geom_sf(data = cep, color = "black", fill = "transparent") +
+  geom_sf(data = areas_urb, color = "red", fill = "transparent")
+
 # Calcular vies ----
 
 ## Lista das espécies com mais de 5 registros ----
