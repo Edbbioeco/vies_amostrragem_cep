@@ -27,3 +27,11 @@ grade_cep <- cep |>
   sf::st_join(cep) |>
   tidyr::drop_na() |>
   dplyr::mutate(FID = 1:dplyr::n())
+
+## Visualizar ----
+
+grade_cep
+
+ggplot() +
+  geom_sf(data = grade_cep, color = "black") +
+  geom_sf(data = cep, color = "red", fill = "transparent")
