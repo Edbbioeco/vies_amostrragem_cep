@@ -87,3 +87,7 @@ ggplot() +
   geom_sf(data = uc_rec, color = "darkgreen", fill = "forestgreen") +
   geom_sf(data = rodovias_cep, color = "black") +
   geom_sf(data = cep, color = "red", fill = "transparent")
+
+## Exportar shapefile ----
+
+rodovias_cep |> sf::st_write("rodovias.shp")
