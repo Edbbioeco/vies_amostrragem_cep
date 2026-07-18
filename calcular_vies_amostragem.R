@@ -65,7 +65,7 @@ ggplot() +
 
 # Calcular vies ----
 
-## Lista das espécies ----
+## Lista das espécies com mais de 5 registros ----
 
 sps <- registros$species |>
   unique()
@@ -74,18 +74,21 @@ sps
 
 ## Calcular vieses para cada espécie ----
 
-vieses_sps <- purrr::map(sps,
-                         purrr::in_parallel(
+vieses_sps <- purrr::map(
+  sps,
+  purrr::in_parallel(
 
-                           ~registros |>
-                             dplyr::filter(species == .x) |>
-                             dplyr::rename("decimalLongitude" = Longitude,
-                                           "decimalLatitude" = Latitude) |>
-                             sampbias::calculate_bias(gaz = uc |>
-                                                        terra::vect() |>
-                                                        list(),
-                                                      res = 0.1,
-                                                      terrestrial = TRUE)
+    tryCatch(
+      ~registros |>
+        dplyr::filter(species == .x) |>
+        dplyr::rename("decimalLongitude" = Longitude,
+                      "decimalLatitude" = Latitude) |>
+        sampbias::calculate_bias(gaz = uc |>
+                                   terra::vect() |>
+                                   list(),
+                                 res = 0.01,
+                                 terrestrial = TRUE),
+      error = \(e){NULL})
 
-                         ),
-                         .progress = TRUE)
+    ),
+  .progress = TRUE)
