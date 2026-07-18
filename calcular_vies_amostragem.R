@@ -146,3 +146,10 @@ vieses_sps <- purrr::map(
 vieses_sps
 
 vieses_sps |> dplyr::glimpse()
+
+## Tratar e remover os NULLs ----
+
+vieses_sps_trat <- vieses_sps |>
+  purrr::compact()
+
+vieses_sps_trat
