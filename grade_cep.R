@@ -25,4 +25,5 @@ grade_cep <- cep |>
   sf::st_make_grid(cellsize = 0.0898316) |>
   sf::st_as_sf() |>
   sf::st_join(cep) |>
-  tidyr::drop_na()
+  tidyr::drop_na() |>
+  dplyr::mutate(FID = 1:dplyr::n())
