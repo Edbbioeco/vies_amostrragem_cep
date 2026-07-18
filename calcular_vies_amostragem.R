@@ -78,17 +78,24 @@ vieses_sps <- purrr::map(
   sps,
   purrr::in_parallel(
 
-    tryCatch(
-      ~registros |>
-        dplyr::filter(species == .x) |>
-        dplyr::rename("decimalLongitude" = Longitude,
-                      "decimalLatitude" = Latitude) |>
-        sampbias::calculate_bias(gaz = uc |>
-                                   terra::vect() |>
-                                   list(),
-                                 res = 0.01,
-                                 terrestrial = TRUE),
-      error = \(e){NULL})
+    \(sps){
+
+      tryCatch({
+
+        registros |>
+          dplyr::filter(species == sps) |>
+          dplyr::rename("decimalLongitude" = Longitude,
+                        "decimalLatitude" = Latitude) |>
+          sampbias::calculate_bias(gaz = uc |>
+                                     terra::vect() |>
+                                     list(),
+                                   res = 0.01,
+                                   terrestrial = TRUE)
+
+        },
+        error = \(e){NULL})
+
+      }
 
     ),
   .progress = TRUE)
