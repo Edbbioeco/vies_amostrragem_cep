@@ -62,3 +62,12 @@ ggplot() +
              size = 1) +
   geom_sf(data = cep, color = "black", fill = "transparent") +
   geom_sf(data = uc, color = "red", fill = "transparent")
+
+# Calcular vies ----
+
+## Lista das espécies ----
+
+sps <- registros$species |>
+  unique()
+
+sps
