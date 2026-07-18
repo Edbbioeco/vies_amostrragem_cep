@@ -164,7 +164,7 @@ sts_vieses <- purrr::imap(
 
     ~.x$bias_estimate |>
       dplyr::summarise(dplyr::across(
-        .cols = dplyr::contains("w_"),
+        .cols = dplyr::contains(c("w_", "q")),
         .fns = ~mean(.))) |>
       dplyr::mutate(species = .y)
 
