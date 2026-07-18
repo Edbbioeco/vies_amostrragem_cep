@@ -49,3 +49,22 @@ ggplot() +
 ## Exportar o shapefile ----
 
 uc_rec |> sf::st_write("unidade_conservacao_cep.shp")
+
+## Rodovias ----
+
+## Importar rodovias ----
+
+purrr::map(list.files(pattern = ".zip$"),
+           purrr::in_parallel(
+
+             ~unzip(.x,
+                    exdir = "./rodovias")
+
+           ),
+           .progress = TRUE)
+
+rodovias <- purrr::map(list.files(path = "./rodovias",
+                                  pattern = ".shp$",
+                                  full.names = TRUE),
+                       ~sf::st_read(.x)) |>
+  dplyr::bind_rows()
