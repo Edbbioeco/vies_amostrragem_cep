@@ -50,6 +50,12 @@ ggplot() +
 
 uc_rec |> sf::st_write("unidade_conservacao_cep.shp")
 
+# Áreas urbanas ----
+
+## Importar ----
+
+areas_urb <- geobr::read_urban_area(year = 2019)
+
 # Rodovias ----
 
 ## Importar rodovias ----
