@@ -40,17 +40,6 @@ grade_cep |>
 
 # Dados unidos ----
 
-## Unindo os dados de registro ----
-
-registros <- dplyr::bind_rows(registros_gbif,
-                              registros_specieslink,
-                              registros_sibbr,
-                              registros_bib)
-
-## Visualizando ----
-
-registros
-
 ## Checando as espécies ----
 
 ### Lista de espécies ----
