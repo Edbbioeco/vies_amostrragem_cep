@@ -12,7 +12,7 @@ library(tidyterra)
 
 library(sampbias)
 
-library(writexl)
+library(performance)
 
 library(ggtext)
 
@@ -168,3 +168,5 @@ anova_w |> performance::check_model(check = c("qq",
 anova_w |>
   anova() |>
   broom::tidy()
+
+### Gráfico ----
