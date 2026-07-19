@@ -115,3 +115,25 @@ riq_reg
 ggplot() +
   tidyterra::geom_spatraster(data = riq_reg) +
   scale_fill_viridis_c(na.value = "transparent")
+
+# Viés de amostragem ----
+
+## Calcular viés ----
+
+vies <- registros |>
+  dplyr::rename("decimalLongitude" = Longitude,
+                "decimalLatitude" = Latitude) |>
+  sampbias::calculate_bias(gaz = list(uc |>
+                                        terra::vect(),
+                                      areas_urb |>
+                                        terra::vect(),
+                                      rodovias |>
+                                        terra::vect()) |>
+                             setNames(c("Unidades de Conservação",
+                                        "Áreas Urbanas",
+                                        "Rodovias")),
+                           inp_raster = riq_reg,
+                           res = 0.0898316,
+                           terrestrial = TRUE)
+
+vies
