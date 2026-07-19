@@ -91,3 +91,7 @@ raster_riqueza_registros
 ggplot() +
   tidyterra::geom_spatraster(data = raster_riqueza_registros) +
   scale_fill_viridis_c(na.value = "transparent")
+
+## Exportar ----
+
+raster_riqueza_registros |> terra::writeRaster("riqueza_registros.tif")
