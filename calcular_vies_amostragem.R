@@ -34,3 +34,19 @@ registros |> dplyr::glimpse()
 
 ggplot() +
   geom_point(data = registros, aes(Longitude, Latitude))
+
+## CEP ----
+
+### Importar ----
+
+cep <- sf::st_read("cep.shp")
+
+### Visualizar ----
+
+cep
+
+ggplot() +
+  geom_point(data = registros,
+             aes(Longitude, Latitude),
+             size = 1) +
+  geom_sf(data = cep, color = "black", fill = "transparent")
