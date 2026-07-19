@@ -53,7 +53,7 @@ grade_cep |>
 ## Criando um shapefile das ocorrências ----
 
 oc_specieslink_shp <- oc_specieslink_trat |>
-  sf::st_as_sf(coords = c("longitude", "latitude"),
+  sf::st_as_sf(coords = c("Longitude", "Latitude"),
                crs = 4674)
 
 oc_specieslink_shp
@@ -70,21 +70,21 @@ oc_specieslink_inter <- grade_cep |>
   dplyr::mutate(FID = 1:dplyr::n()) |>
   sf::st_join(oc_specieslink_shp,
               join = st_intersects) |>
-  dplyr::filter(!is.na(scientificname) & scientificname |>
+  dplyr::filter(!is.na(species) & species |>
                   stringr::word(2) != "NA") |>
   tibble::as_tibble() |>
-  dplyr::select(FID, scientificname) |>
+  dplyr::select(FID, species) |>
   dplyr::mutate(presence = 1,
                 Source = "SpeciesLink") |>
-  dplyr::rename("species" = scientificname) |>
+  dplyr::rename("species" = species) |>
   dplyr::distinct(FID, species, .keep_all = TRUE) |>
   dplyr::bind_cols(grade_cep |>
                      sf::st_join(oc_specieslink_shp, join = st_intersects) |>
-                     dplyr::filter(!is.na(scientificname) & scientificname |>
+                     dplyr::filter(!is.na(species) & species |>
                                      stringr::word(2) != "NA") |>
-                     dplyr::select(FID, scientificname) |>
+                     dplyr::select(FID, species) |>
                      dplyr::mutate(presence = 1) |>
-                     dplyr::rename("species" = scientificname) |>
+                     dplyr::rename("species" = species) |>
                      dplyr::distinct(FID, species, .keep_all = TRUE) |>
                      sf::st_centroid() |>
                      sf::st_coordinates() |>
