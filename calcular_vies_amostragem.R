@@ -170,3 +170,21 @@ anova_w |>
   broom::tidy()
 
 ### Gráfico ----
+
+df_w |>
+  ggplot(aes(Factor, Weight)) +
+  ggbeeswarm::geom_quasirandom() +
+  theme_bw() +
+  theme(axis.text = element_text(size = 20, color = "black"),
+        axis.title = element_text(size = 20, color = "black"),
+        legend.text = element_text(size = 20, color = "black"),
+        legend.title = element_text(size = 20, color = "black"),
+        legend.position = "bottom",
+        strip.text = element_text(size = 30, color = "black"),
+        strip.background = element_rect(color = "black",
+                                        linewidth = 1),
+        panel.background = element_rect(linewidth = 1,
+                                        color = "black"),
+        plot.title = element_text(size = 20, color = "black"),
+        plot.subtitle = element_text(size = 17.5, color = "black")) +
+  ggview::canvas(height = 10, width = 12)
