@@ -101,3 +101,17 @@ ggplot() +
              size = 1) +
   geom_sf(data = cep, color = "black", fill = "transparent") +
   geom_sf(data = rodovias, color = "red", fill = "transparent")
+
+## Raster de riqueza de registros ----
+
+### Importar ----
+
+riq_reg <- terra::rast("riqueza_registros.tif")
+
+### Visualizar ----
+
+riq_reg
+
+ggplot() +
+  tidyterra::geom_spatraster(data = riq_reg) +
+  scale_fill_viridis_c(na.value = "transparent")
