@@ -151,3 +151,9 @@ df_w <- vies$bias_estimate |>
                   stringr::str_replace_all("\\.", " "))
 
 df_w
+
+### Modelo ANOVA ----
+
+#### Criar modelo ----
+
+anova_w <- lm(Weight ~ Factor, data = df_w)
