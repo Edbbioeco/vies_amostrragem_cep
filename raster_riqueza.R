@@ -83,3 +83,11 @@ raster_riqueza_registros <- cep_grade_riqueza |>
                      terra::vect(),
                    y = .,
                    field = "Riqueza")
+
+### Visualizar ----
+
+raster_riqueza_registros
+
+ggplot() +
+  tidyterra::geom_spatraster(data = raster_riqueza_registros) +
+  scale_fill_viridis_c(na.value = "transparent")
