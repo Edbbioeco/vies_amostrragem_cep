@@ -157,3 +157,8 @@ df_w
 #### Criar modelo ----
 
 anova_w <- lm(Weight ~ Factor, data = df_w)
+
+#### Ajuste do modelo ----
+
+anova_w |> performance::check_model(check = c("qq",
+                                              "normality"))
