@@ -42,3 +42,13 @@ cep_grade
 ggplot() +
   geom_sf(data = cep_grade, color = 'black') +
   geom_point(data = registros, aes(Longitude, Latitude))
+
+# Riqueza de registros ----
+
+## Calcular riqueza de registros ----
+
+riq <- registros |>
+  dplyr::summarise(Riqueza = species |> dplyr::n_distinct(),
+                   .by = FID)
+
+riq
