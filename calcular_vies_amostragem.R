@@ -218,3 +218,20 @@ ggplot() +
   tidyterra::geom_spatraster(data = distancias) +
   facet_wrap(~lyr)+
   scale_fill_viridis_c(na.value = "transparent")
+
+### Data frame dos valores ----
+
+df_dist <- tibble::tibble(`Record richness` = riq_reg |>
+                            terra::values() |>
+                            na.omit() |>
+                            as.numeric()) |>
+  dplyr::bind_cols(distancias |>
+                     terra::values() |>
+                     na.omit() |>
+                     as.data.frame()) |>
+  tidyr::pivot_longer(cols = 2:4,
+                      names_to = "Factor",
+                      values_to = "Distance (km)") |>
+  dplyr::mutate(`Distance (km)` = `Distance (km)` / 1e3)
+
+df_dist
