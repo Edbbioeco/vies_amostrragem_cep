@@ -14,7 +14,7 @@ library(writexl)
 
 ### Importando ----
 
-oc_specieslink <- readxl::read_xlsx("C:/Users/LENOVO/OneDrive/Documentos/anuros_caatinga/dados_specieslink.xlsx")
+oc_specieslink <- readxl::read_xlsx("C:/Users/LENOVO/OneDrive/Documentos/vies_amostrragem_cep/registros_specieslink.xlsx")
 
 ### Visualizanddo ----
 
