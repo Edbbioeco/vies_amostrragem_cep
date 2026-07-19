@@ -14,7 +14,7 @@ library(sampbias)
 
 library(performance)
 
-library(ggtext)
+library(broom)
 
 library(ggview)
 
