@@ -162,3 +162,9 @@ anova_w <- lm(Weight ~ Factor, data = df_w)
 
 anova_w |> performance::check_model(check = c("qq",
                                               "normality"))
+
+#### Data frame das estatísticas ----
+
+anova_w |>
+  anova() |>
+  broom::tidy()
