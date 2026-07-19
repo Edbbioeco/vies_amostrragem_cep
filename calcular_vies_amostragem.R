@@ -6,13 +6,13 @@ library(tidyverse)
 
 library(sf)
 
-library(sampbias)
-
 library(terra)
 
-library(writexl)
-
 library(tidyterra)
+
+library(sampbias)
+
+library(writexl)
 
 library(ggtext)
 
