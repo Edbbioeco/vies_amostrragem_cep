@@ -137,3 +137,17 @@ vies <- registros |>
                            terrestrial = TRUE)
 
 vies
+
+## Pesos por fator ----
+
+### Criar data frame ----
+
+df_w <- vies$bias_estimate |>
+  tidyr::pivot_longer(cols = dplyr::contains("w_"),
+                      names_to = "Factor",
+                      values_to = "Weight") |>
+  dplyr::mutate(Factor = Factor |>
+                  stringr::str_remove("w_") |>
+                  stringr::str_replace_all("\\.", " "))
+
+df_w
