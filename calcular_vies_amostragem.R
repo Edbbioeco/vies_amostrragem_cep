@@ -209,8 +209,8 @@ distancias <- purrr::map(
              "Áreas Urbanas",
              "Rodovias")) |>
   terra::rast() |>
-  terra::crop(cep) |>
-  terra::mask(cep)
+  terra::crop(riq_reg) |>
+  terra::mask(riq_reg)
 
 distancias
 
