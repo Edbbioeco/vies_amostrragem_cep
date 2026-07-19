@@ -71,3 +71,15 @@ ggplot() +
                                         color = Riqueza)) +
   scale_fill_viridis_c() +
   scale_color_viridis_c()
+
+## Criar Raster ----
+
+### Criar template ----
+
+raster_riqueza_registros <- cep_grade_riqueza |>
+  terra::vect() |>
+  terra::rast(resolution = 0.0898316) %>%
+  terra::rasterize(x = cep_grade_riqueza |>
+                     terra::vect(),
+                   y = .,
+                   field = "Riqueza")
