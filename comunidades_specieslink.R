@@ -25,12 +25,12 @@ oc_specieslink |> dplyr::glimpse()
 ### Tratando ----
 
 oc_specieslink_trat <- oc_specieslink |>
-  dplyr::select(scientificname, longitude:latitude) |>
-  dplyr::mutate(longitude = longitude |> as.numeric(),
-                latitude = latitude |> as.numeric()) |>
-  dplyr::filter(!scientificname |> stringr::str_detect(" sp| cf| af")) |>
+  dplyr::select(species, Longitude:Latitude) |>
+  dplyr::mutate(Longitude = Longitude |> as.numeric(),
+                Latitude = Latitude |> as.numeric()) |>
+  dplyr::filter(!species |> stringr::str_detect(" sp| cf| af")) |>
   tidyr::drop_na() |>
-  dplyr::distinct(scientificname, longitude, latitude, .keep_all = TRUE)
+  dplyr::distinct(species, Longitude, Latitude, .keep_all = TRUE)
 
 oc_specieslink_trat |> as.data.frame()
 
