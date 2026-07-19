@@ -52,3 +52,22 @@ riq <- registros |>
                    .by = FID)
 
 riq
+
+## Calcular a riqueza para todos os grids ----
+
+cep_grade_riqueza <- cep_grade |>
+  dplyr::left_join(riq,
+                   by = "FID") |>
+  dplyr::mutate(Riqueza = dplyr::case_when(
+
+    Riqueza |> is.na() ~ 0,
+    .default = Riqueza
+  ))
+
+cep_grade_riqueza
+
+ggplot() +
+  geom_sf(data = cep_grade_riqueza, aes(fill = Riqueza,
+                                        color = Riqueza)) +
+  scale_fill_viridis_c() +
+  scale_color_viridis_c()
