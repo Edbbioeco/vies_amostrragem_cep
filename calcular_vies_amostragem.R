@@ -188,3 +188,33 @@ df_w |>
         plot.title = element_text(size = 20, color = "black"),
         plot.subtitle = element_text(size = 17.5, color = "black")) +
   ggview::canvas(height = 10, width = 12)
+
+ggsave(filename = "grafico_distribuição_pesos.png", height = 10, width = 12)
+
+## Riqueza de registros por distância do fator ----
+
+### Calcular a istancias dos fatores ----
+
+distancias <- purrr::map(
+  list(uc,
+       areas_urb,
+       rodovias),
+  purrr::in_parallel(
+
+    ~terra::distance(riq_reg, .x)
+
+  ),
+  .progress = TRUE) |>
+  setNames(c("Unidades de Conservação",
+             "Áreas Urbanas",
+             "Rodovias")) |>
+  terra::rast() |>
+  terra::crop(cep) |>
+  terra::mask(cep)
+
+distancias
+
+ggplot() +
+  tidyterra::geom_spatraster(data = distancias) +
+  facet_wrap(~lyr)+
+  scale_fill_viridis_c(na.value = "transparent")
