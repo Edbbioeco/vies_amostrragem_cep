@@ -243,6 +243,8 @@ df_sr |>
   ggplot(aes(`Distance to factor (km)`, `Sampling rate`, color = Factor)) +
   geom_line(linewidth = 3) +
   scale_color_manual(values = c("darkorange4", "gold2", "forestgreen")) +
+  guides(color = guide_legend(title.position = "top",
+                              title.hjust = 0.5)) +
   theme_bw() +
   theme(axis.text = element_text(size = 20, color = "black"),
         axis.title = element_text(size = 20, color = "black"),
