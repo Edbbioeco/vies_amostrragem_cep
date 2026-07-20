@@ -20,6 +20,8 @@ library(ggview)
 
 library(patchwork)
 
+library(spdep)
+
 # Dados ----
 
 ## Registros de ocorrência ----
