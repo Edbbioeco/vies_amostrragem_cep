@@ -268,3 +268,34 @@ ggsave(filename = "grafico_sampling_rate.png", height = 10, width = 12)
 
 raster_proj <- vies |>
   sampbias::project_bias()
+
+### Visualizar ----
+
+raster_proj
+
+purrr::map(
+  1:terra::nlyr(raster_proj),
+  purrr::in_parallel(
+
+    ~ggplot() +
+      tidyterra::geom_spatraster(data = raster_proj[[.x]]) +
+      facet_wrap(~lyr) +
+      scale_fill_viridis_c() +
+      theme_bw() +
+      theme(axis.text = element_text(size = 20, color = "black"),
+            axis.title = element_text(size = 20, color = "black"),
+            legend.text = element_text(size = 20, color = "black"),
+            legend.title = element_text(size = 20, color = "black"),
+            legend.position = "bottom",
+            strip.text = element_text(size = 20, color = "black"),
+            strip.background = element_rect(color = "black",
+                                            linewidth = 1),
+            panel.background = element_rect(linewidth = 1,
+                                            color = "black"),
+            plot.title = element_text(size = 20, color = "black"),
+            plot.subtitle = element_text(size = 17.5, color = "black")) +
+      ggview::canvas(height = 10, width = 12)
+
+  )) |>
+  patchwork::wrap_plots() +
+  ggview::canvas(height = 10, width = 12)
