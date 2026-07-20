@@ -190,3 +190,11 @@ df_w |>
   ggview::canvas(height = 10, width = 12)
 
 ggsave(filename = "grafico_distribuição_pesos.png", height = 10, width = 12)
+
+## Taxa de amostragem por MCMC ----
+
+## Valores médios das estimativas do modelo ----
+
+medias_vies <- vies$bias_estimate |> colMeans()
+
+medias_vies
