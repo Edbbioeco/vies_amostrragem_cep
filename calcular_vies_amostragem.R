@@ -129,9 +129,9 @@ vies <- registros |>
                                         terra::vect(),
                                       rodovias |>
                                         terra::vect()) |>
-                             setNames(c("Unidades de Conservação",
-                                        "Áreas Urbanas",
-                                        "Rodovias")),
+                             setNames(c("UC",
+                                        "AU",
+                                        "RO")),
                            inp_raster = riq_reg,
                            res = 0.0898316,
                            terrestrial = TRUE)
@@ -190,48 +190,3 @@ df_w |>
   ggview::canvas(height = 10, width = 12)
 
 ggsave(filename = "grafico_distribuição_pesos.png", height = 10, width = 12)
-
-## Riqueza de registros por distância do fator ----
-
-### Calcular a istancias dos fatores ----
-
-distancias <- purrr::map(
-  list(uc,
-       areas_urb,
-       rodovias),
-  purrr::in_parallel(
-
-    ~terra::distance(riq_reg, .x)
-
-  ),
-  .progress = TRUE) |>
-  setNames(c("Unidades de Conservação",
-             "Áreas Urbanas",
-             "Rodovias")) |>
-  terra::rast() |>
-  terra::crop(riq_reg) |>
-  terra::mask(riq_reg)
-
-distancias
-
-ggplot() +
-  tidyterra::geom_spatraster(data = distancias) +
-  facet_wrap(~lyr)+
-  scale_fill_viridis_c(na.value = "transparent")
-
-### Data frame dos valores ----
-
-df_dist <- tibble::tibble(`Record richness` = riq_reg |>
-                            terra::values() |>
-                            na.omit() |>
-                            as.numeric()) |>
-  dplyr::bind_cols(distancias |>
-                     terra::values() |>
-                     na.omit() |>
-                     as.data.frame()) |>
-  tidyr::pivot_longer(cols = 2:4,
-                      names_to = "Factor",
-                      values_to = "Distance (km)") |>
-  dplyr::mutate(`Distance (km)` = `Distance (km)` / 1e3)
-
-df_dist
