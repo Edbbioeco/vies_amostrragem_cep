@@ -368,4 +368,10 @@ moran_flex <- moran_global |>
     statistic = statistic |> round(2)) |>
   dplyr::rename("Moran's I" = 2,
                 "z" = 3,
-                "p" = 4)
+                "p" = 4) |>
+  flextable::flextable() |>
+  flextable::align(align = "center", part = "all") |>
+  flextable::width(width = 1) |>
+  flextable::width(width = 1.5, j = 1)
+
+moran_flex
