@@ -208,3 +208,9 @@ dist_cep
 medias_vies <- vies$bias_estimate |> colMeans()
 
 medias_vies
+
+### Criar vetor de distâncias ----
+
+dist_seq <- seq(0, dist_cep |> as.numeric(), length.out = 1000)
+
+dist_seq
