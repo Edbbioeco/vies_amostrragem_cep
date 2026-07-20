@@ -346,6 +346,9 @@ moran_global <- purrr::map(
     ),
   .progress = TRUE) |>
   setNames(raster_proj |>
-             terra::names())
+             terra::names()) |>
+  purrr::imap_dfr(~.x |>
+                    broom::tidy() |>
+                    dplyr::mutate(Factor = .y))
 
 moran_global
