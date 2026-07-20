@@ -267,7 +267,9 @@ ggsave(filename = "grafico_sampling_rate.png", height = 10, width = 12)
 ### Calcular projeção ----
 
 raster_proj <- vies |>
-  sampbias::project_bias()
+  sampbias::project_bias() |>
+  terra::crop(cep) |>
+  terra::mask(cep)
 
 ### Visualizar ----
 
