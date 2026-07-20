@@ -22,6 +22,8 @@ library(patchwork)
 
 library(spdep)
 
+library(flextable)
+
 # Dados ----
 
 ## Registros de ocorrência ----
