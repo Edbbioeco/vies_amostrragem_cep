@@ -220,3 +220,19 @@ medias_vies
 dist_seq <- seq(0, dist_cep |> as.numeric(), length.out = 1000)
 
 dist_seq
+
+### Data frame dos valores preditos de sampling rate ----
+
+df_sr <- purrr::map_dfr(
+  medias_vies[5:7] |> names(),
+  purrr::in_parallel(
+
+    ~tibble::tibble(
+      `Distance (km)` = dist_seq,
+      `Sampling rate` = medias_vies[["q"]] * exp(-medias_vies[[.x]] * `Distance (km)`),
+      Factor = .x |> stringr::str_remove("w_"))
+
+    ),
+  .progress = TRUE)
+
+df_sr
