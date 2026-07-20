@@ -375,3 +375,5 @@ moran_flex <- moran_global |>
   flextable::width(width = 1.5, j = 1)
 
 moran_flex
+
+moran_flex |> flextable::save_as_docx(path = "tabela_estatisticas_moran.docx")
