@@ -360,10 +360,12 @@ moran_global
 moran_flex <- moran_global |>
   dplyr::relocate(Factor, .before = 1) |>
   dplyr::select(2, 5:6) |>
-  dplyr::mutate(p.value = dplyr::case_when(
-
-    p.value < 0.01 ~ "< 0.01",
-    .default = p.value |> as.character())) |>
+  dplyr::mutate(
+    p.value = dplyr::case_when(
+      p.value < 0.01 ~ "< 0.01",
+      .default = p.value |> as.character()),
+    estimate1 = estimate1 |> round(3),
+    statistic = statistic |> round(2)) |>
   dplyr::rename("Moran's I" = 1,
                 "z" = 2,
                 "p" = 3)
