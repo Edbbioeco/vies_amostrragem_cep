@@ -318,3 +318,34 @@ purrr::map(
   ggview::canvas(height = 20, width = 24)
 
 ggsave(filename = "grafico_projecoes.png", height = 20, width = 24)
+
+### Calcular agregação espacial ----
+
+moran_global <- purrr::map(
+  1:terra::nlyr(raster_proj),
+  purrr::in_parallel(
+
+    \(lyr){
+
+      valores <- raster_proj|>
+        terra::as.points() |>
+        as.data.frame()  %>%
+        .[, lyr]
+
+      lw <- raster_proj|>
+        terra::crds() |>
+        as.data.frame() |>
+        spdep::knearneigh(k = 8) |>
+        spdep::knn2nb() |>
+        spdep::nb2listw()
+
+      spdep::moran.test(valores, lw)
+
+      }
+
+    ),
+  .progress = TRUE) |>
+  setNames(raster_proj |>
+             terra::names())
+
+moran_global
