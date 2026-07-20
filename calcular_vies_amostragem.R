@@ -314,3 +314,5 @@ purrr::map(
   .progress = TRUE) |>
   patchwork::wrap_plots(nrow = 1) +
   ggview::canvas(height = 20, width = 24)
+
+ggsave(filename = "grafico_projecoes.png", height = 20, width = 24)
