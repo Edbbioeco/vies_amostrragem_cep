@@ -354,3 +354,16 @@ moran_global <- purrr::map(
                     dplyr::mutate(Factor = .y))
 
 moran_global
+
+### Tabelas das estatísticas ----
+
+moran_flex <- moran_global |>
+  dplyr::relocate(Factor, .before = 1) |>
+  dplyr::select(2, 5:6) |>
+  dplyr::mutate(p.value = dplyr::case_when(
+
+    p.value < 0.01 ~ "< 0.01",
+    .default = p.value |> as.character())) |>
+  dplyr::rename("Moran's I" = 1,
+                "z" = 2,
+                "p" = 3)
