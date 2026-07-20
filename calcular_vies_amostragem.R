@@ -282,7 +282,14 @@ purrr::map(
     ~ggplot() +
       tidyterra::geom_spatraster(data = raster_proj[[.x]]) +
       facet_wrap(~lyr) +
-      scale_fill_viridis_c() +
+      scale_fill_viridis_c(na.value = "transparent",
+                           guide = guide_colourbar(
+
+                             title.position = "top",
+                             title.hjust = 0.5,
+                             barwidth = 15,
+                             frame.colour = "black",
+                             ticks.colour = "black")) +
       theme_bw() +
       theme(axis.text = element_text(size = 20, color = "black"),
             axis.title = element_text(size = 20, color = "black"),
@@ -298,6 +305,7 @@ purrr::map(
             plot.subtitle = element_text(size = 17.5, color = "black")) +
       ggview::canvas(height = 10, width = 12)
 
-  )) |>
-  patchwork::wrap_plots() +
-  ggview::canvas(height = 10, width = 12)
+  ),
+  .progress = TRUE) |>
+  patchwork::wrap_plots(nrow = 1) +
+  ggview::canvas(height = 20, width = 24)
