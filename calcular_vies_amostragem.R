@@ -228,8 +228,8 @@ df_sr <- purrr::map_dfr(
   purrr::in_parallel(
 
     ~tibble::tibble(
-      `Distance (km)` = dist_seq,
-      `Sampling rate` = medias_vies[["q"]] * exp(-medias_vies[[.x]] * `Distance (km)`),
+      `Distance to factor (km)` = dist_seq,
+      `Sampling rate` = medias_vies[["q"]] * exp(-medias_vies[[.x]] * `Distance to factor (km)`),
       Factor = .x |> stringr::str_remove("w_"))
 
     ),
@@ -240,7 +240,7 @@ df_sr
 ### Gráfico ----
 
 df_sr |>
-  ggplot(aes(`Distance (km)`, `Sampling rate`, color = Factor)) +
+  ggplot(aes(`Distance to factor (km)`, `Sampling rate`, color = Factor)) +
   geom_line(linewidth = 3) +
   scale_color_manual(values = c("darkorange4", "gold2", "forestgreen")) +
   theme_bw() +
