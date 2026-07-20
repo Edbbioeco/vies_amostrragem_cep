@@ -261,3 +261,10 @@ df_sr |>
   ggview::canvas(height = 10, width = 12)
 
 ggsave(filename = "grafico_sampling_rate.png", height = 10, width = 12)
+
+## Projeção espacial ----
+
+### Calcular projeção ----
+
+raster_proj <- vies |>
+  sampbias::project_bias()
