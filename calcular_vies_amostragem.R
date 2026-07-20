@@ -271,6 +271,11 @@ raster_proj <- vies |>
   terra::crop(cep) |>
   terra::mask(cep)
 
+raster_proj |>
+  terra::set.names(raster_proj |>
+                     terra::names() |>
+                     stringr::str_replace("_", " "))
+
 ### Visualizar ----
 
 raster_proj
