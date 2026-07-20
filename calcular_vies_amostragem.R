@@ -18,6 +18,8 @@ library(broom)
 
 library(ggview)
 
+library(patchwork)
+
 # Dados ----
 
 ## Registros de ocorrência ----
